@@ -9,15 +9,20 @@ set(CMAKE_CXX_EXTENSIONS        OFF)
 
 # Set varaibles names
 #set(LIBRARY_NAME library)
-set(MAIN_APP main_app)
+#set(MAIN_APP main_app)
 
 include(FetchContent)
 FetchContent_Declare(
-   SFML
-  GIT_REPOSITORY https://github.com/SFML/SFML
+   sfml
+   GIT_REPOSITORY https://github.com/SFML/SFML
    GIT_TAG 2.5.1)
 
-FetchContent_MakeAvailable(SFML)
+#FetchContent_MakeAvailable(sfml)
+FetchContent_GetProperties(sfml)
+if(NOT sfml_POPULATED)
+    FetchContent_Populate(sfml)
+    add_subdirectory(${sfml_SOURCE_DIR} ${sfml_BINARY_DIR})
+endif()
 
 #add_subdirectory(src)
 add_subdirectory(app)
