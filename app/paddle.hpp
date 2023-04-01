@@ -18,6 +18,8 @@ public:
 
 private:
     static sf::Texture texture;
+    // Process the input from the player
+    void process_player_input();
 };
 
 #endif // PADDLE_H
