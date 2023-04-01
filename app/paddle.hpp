@@ -16,6 +16,11 @@ public:
     void update() override;
     void draw(sf::RenderWindow &window) override;
 
+    // Implement the helper functions
+    void moveUp() noexcept override;
+    void moveLeft() noexcept override;
+    void moveRight() noexcept override;
+
 private:
     static sf::Texture texture;
     // Process the input from the player

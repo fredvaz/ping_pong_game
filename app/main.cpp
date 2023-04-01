@@ -16,6 +16,7 @@ General Notes:
 #include "background.hpp"
 #include "ball.hpp"
 #include "paddle.hpp"
+#include "interactions.hpp"
 
 //
 
@@ -125,6 +126,7 @@ int main()
         background.update();
         ball.update();
         paddle.update();
+        handleCollision(ball, paddle);
 
         // Display the updated graphics
         background.draw(game_window);

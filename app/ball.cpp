@@ -12,7 +12,7 @@ Ball::Ball(float x, float y) : MovingEntity()
     sprite.setTexture(texture);
     // circle.setRadius(10.0f);
     // circle.setFillColor(sf::Color::Red);
-     
+
     // Set the intitial postion and velocity of the ball
     sprite.setPosition(x, y);
     // circle.setPosition(x, y);
@@ -33,17 +33,32 @@ void Ball::update()
     if (x() < 0)
         velocity.x = -velocity.x;
 
-    if(x() > constants::window_width)
+    if (x() > constants::window_width)
         velocity.x = -velocity.x;
 
-    if(y() < 0)
+    if (y() < 0)
         velocity.y = -velocity.y;
 
-    if(y() > constants::window_height)
+    if (y() > constants::window_height)
         velocity.y = -velocity.y;
 }
 void Ball::draw(sf::RenderWindow &window)
 {
     window.draw(sprite);
     // window.draw(circle);
+}
+
+void Ball::moveUp() noexcept
+{
+    velocity.y = -constants::ball_speed;
+}
+
+void Ball::moveLeft() noexcept
+{
+    velocity.x = -constants::ball_speed;
+}
+
+void Ball::moveRight() noexcept
+{
+    velocity.x = constants::ball_speed;
 }

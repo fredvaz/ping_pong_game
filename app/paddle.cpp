@@ -52,3 +52,18 @@ void Paddle::process_player_input()
         velocity.x = 0;
     }
 }
+
+void Paddle::moveUp() noexcept
+{
+    // Not possible move up
+}
+
+void Paddle::moveLeft() noexcept
+{
+    velocity.x = -constants::ball_speed;
+}
+
+void Paddle::moveRight() noexcept
+{
+    velocity.x = constants::ball_speed;
+}

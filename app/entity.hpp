@@ -49,6 +49,11 @@ public:
     // virtual void draw(sf::RenderWindow& window) = 0;
     // etc
 
+    // Helper Functions to change the sprite's direction
+    virtual void moveUp() noexcept = 0;
+    virtual void moveLeft() noexcept = 0;
+    virtual void moveRight() noexcept = 0;
+
 protected:
     // SFML vector to store the object's velocity
     // This is the distance the ball moves between screen updates
