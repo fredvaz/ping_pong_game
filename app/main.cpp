@@ -97,17 +97,17 @@ int main()
 
     for (int i = 0; i < constants::brick_columns; ++i)
     {
-        for (int j = 0; j < constants::brick_rows; ++j) 
+        for (int j = 0; j < constants::brick_rows; ++j)
         {
             // Calculate the brick's position
             float x = constants::brick_offset + (i + 1) * constants::brick_width;
             float y = (j + 1) * constants::brick_height;
 
+            // Create the brick object
             bricks.emplace_back(x, y);
-
         }
     }
-    
+
     // Creates the game window using an object of class RenderWindow
     // The constructor takes an SFML 2D vector with the window dimensions and an std::string with the window title
     sf::RenderWindow game_window({constants::window_width, constants::window_height}, "Ping Pong Game v1");
@@ -146,19 +146,30 @@ int main()
         ball.update();
         paddle.update();
 
-        for (auto & b: bricks)
+        for (auto &b : bricks)
             b.update();
 
         handleCollision(ball, paddle);
+
+        for (auto &b : bricks)
+        {
+            handleCollision(ball, b);
+        }
+        
+        // Erase any destroyed bricks from the grid
+        bricks.erase(std::remove_if(std::begin(bricks), std::end(bricks),
+                                    [](const Brick &b)
+                                    { return b.isDestroyed(); }),
+                     std::end(bricks));
 
         // Display the updated graphics
         background.draw(game_window);
         ball.draw(game_window);
         paddle.draw(game_window);
 
-        for (auto b: bricks)
+        for (auto b : bricks)
             b.draw(game_window);
-            
+
         game_window.display();
     }
 

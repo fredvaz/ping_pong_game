@@ -31,8 +31,20 @@ public:
     float x() const noexcept;
     float y() const noexcept;
 
+    // Helper functions to get the edges of the sprite
+    float left() const noexcept;
+    float right() const noexcept;
+    float top() const noexcept;
+    float bottom() const noexcept;
+
+    // Helper functions for the state of the entity
+    void destroy() noexcept;
+    bool isDestroyed() const noexcept;
+
 protected:
     sf::Sprite sprite;
+    // Boolean member  tracks the entity's on the screen
+    bool destroyed{false};
 };
 
 // Abstract Class to represent graphical entities which can move around the screen
@@ -51,6 +63,7 @@ public:
 
     // Helper Functions to change the sprite's direction
     virtual void moveUp() noexcept = 0;
+    virtual void moveDown() noexcept = 0;
     virtual void moveLeft() noexcept = 0;
     virtual void moveRight() noexcept = 0;
 

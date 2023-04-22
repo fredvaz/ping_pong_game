@@ -53,6 +53,11 @@ void Ball::moveUp() noexcept
     velocity.y = -constants::ball_speed;
 }
 
+void Ball::moveDown() noexcept
+{
+    velocity.y = constants::ball_speed;
+}
+
 void Ball::moveLeft() noexcept
 {
     velocity.x = -constants::ball_speed;

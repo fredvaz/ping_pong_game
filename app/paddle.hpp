@@ -18,6 +18,7 @@ public:
 
     // Implement the helper functions
     void moveUp() noexcept override;
+    void moveDown() noexcept override;
     void moveLeft() noexcept override;
     void moveRight() noexcept override;
 

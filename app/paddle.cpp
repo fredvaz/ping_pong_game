@@ -58,6 +58,11 @@ void Paddle::moveUp() noexcept
     // Not possible move up
 }
 
+void Paddle::moveDown() noexcept
+{
+    // Not possible move up
+}
+
 void Paddle::moveLeft() noexcept
 {
     velocity.x = -constants::ball_speed;
