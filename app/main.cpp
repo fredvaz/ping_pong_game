@@ -12,11 +12,13 @@ General Notes:
 #include <SFML/Graphics.hpp>
 #include <string>
 #include <random>
+
 #include "constants.hpp"
 #include "background.hpp"
 #include "ball.hpp"
 #include "paddle.hpp"
 #include "interactions.hpp"
+#include "brick.hpp"
 
 //
 
@@ -89,6 +91,23 @@ int main()
     // Create a paddle object at the bottom of the screen in the middle
     Paddle paddle(constants::window_width / 2.0f, constants::window_height - constants::paddle_height);
 
+    // Create the grid of bricks
+    // We will use an std::vector to store them
+    std::vector<Brick> bricks;
+
+    for (int i = 0; i < constants::brick_columns; ++i)
+    {
+        for (int j = 0; j < constants::brick_rows; ++j) 
+        {
+            // Calculate the brick's position
+            float x = constants::brick_offset + (i + 1) * constants::brick_width;
+            float y = (j + 1) * constants::brick_height;
+
+            bricks.emplace_back(x, y);
+
+        }
+    }
+    
     // Creates the game window using an object of class RenderWindow
     // The constructor takes an SFML 2D vector with the window dimensions and an std::string with the window title
     sf::RenderWindow game_window({constants::window_width, constants::window_height}, "Ping Pong Game v1");
@@ -126,12 +145,20 @@ int main()
         background.update();
         ball.update();
         paddle.update();
+
+        for (auto & b: bricks)
+            b.update();
+
         handleCollision(ball, paddle);
 
         // Display the updated graphics
         background.draw(game_window);
         ball.draw(game_window);
         paddle.draw(game_window);
+
+        for (auto b: bricks)
+            b.draw(game_window);
+            
         game_window.display();
     }
 
